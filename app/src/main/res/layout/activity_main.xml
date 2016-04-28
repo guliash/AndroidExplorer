@@ -11,15 +11,4 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.github.guliash.androidexplorer.MainActivity">
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/simple_alert"
-        android:id="@+id/simple"/>
-
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/fragment_alert"
-        android:id="@+id/fragment"/>
 </LinearLayout>
