@@ -53,7 +53,8 @@ public class MainActivity extends BaseActivity {
         mFragmentBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                AlertDialogFragment alert = AlertDialogFragment.newInstance();
+                alert.show(getSupportFragmentManager(), "alert");
             }
         });
 

@@ -47,7 +47,7 @@ public class BaseActivity extends AppCompatActivity {
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
-        Log.e(TAG, "ON SAVE ISNTANCE STATE " + this);
+        Log.e(TAG, "ON SAVE INSTANCE STATE " + this);
         super.onSaveInstanceState(outState);
     }
 }
