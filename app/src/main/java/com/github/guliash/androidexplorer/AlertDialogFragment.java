@@ -49,4 +49,11 @@ public class AlertDialogFragment extends BaseDialogFragment {
                     }
                 }).create();
     }
+
+    @Override
+    public void onCancel(DialogInterface dialog) {
+        super.onCancel(dialog);
+        //THIS IS CALLED, NOT THE DIALOG'S ONE
+        Log.e(TAG, "FRAGMENT CANCEL");
+    }
 }
