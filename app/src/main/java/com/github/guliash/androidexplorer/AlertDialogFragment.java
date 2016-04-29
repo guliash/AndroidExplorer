@@ -42,6 +42,11 @@ public class AlertDialogFragment extends BaseDialogFragment {
                     public void onDismiss(DialogInterface dialog) {
                         Log.e(TAG, "FRAGMENT DISMISS");
                     }
+                }).setOnCancelListener(new DialogInterface.OnCancelListener() {
+                    @Override
+                    public void onCancel(DialogInterface dialog) {
+                        Log.e(TAG, "FRAGMENT CANCEL");
+                    }
                 }).create();
     }
 }

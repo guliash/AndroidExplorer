@@ -45,6 +45,11 @@ public class MainActivity extends BaseActivity {
                             public void onDismiss(DialogInterface dialog) {
                                 Log.e(TAG, "SIMPLE DISMISS");
                             }
+                        }).setOnCancelListener(new DialogInterface.OnCancelListener() {
+                            @Override
+                            public void onCancel(DialogInterface dialog) {
+                                Log.e(TAG, "SIMPLE CANCEL");
+                            }
                         });
                 builder.show();
             }
