@@ -40,12 +40,12 @@ public class AlertDialogFragment extends BaseDialogFragment {
                 }).setOnDismissListener(new DialogInterface.OnDismissListener() {
                     @Override
                     public void onDismiss(DialogInterface dialog) {
-                        Log.e(TAG, "FRAGMENT DISMISS");
+                        Log.e(TAG, "FRAGMENT DISMISS DIALOG");
                     }
                 }).setOnCancelListener(new DialogInterface.OnCancelListener() {
                     @Override
                     public void onCancel(DialogInterface dialog) {
-                        Log.e(TAG, "FRAGMENT CANCEL");
+                        Log.e(TAG, "FRAGMENT CANCEL DIALOG");
                     }
                 }).create();
     }
@@ -55,5 +55,12 @@ public class AlertDialogFragment extends BaseDialogFragment {
         super.onCancel(dialog);
         //THIS IS CALLED, NOT THE DIALOG'S ONE
         Log.e(TAG, "FRAGMENT CANCEL");
+    }
+
+    @Override
+    public void onDismiss(DialogInterface dialog) {
+        super.onDismiss(dialog);
+        //THIS IS CALLED, NOT THE DIALOG'S ONE
+        Log.e(TAG, "FRAGMENT DISMISS");
     }
 }
