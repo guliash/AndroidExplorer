@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">AndroidExplorer</string>
+    <string name='go'>GO</string>
+    <string name="acc_dec">AccelerateDecelerate</string>
+    <string name="acc">Accelerate</string>
+    <string name="ant">Anticipate</string>
+    <string name="ant_over">AnticipateOvershoot</string>
+    <string name="bounce">Bounce</string>
+    <string name="cycle">Cycle</string>
+    <string name="dec">Decelerate</string>
+    <string name="linear">Linear</string>
+    <string name="over">Overshoot</string>
 </resources>
