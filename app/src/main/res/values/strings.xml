@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">AndroidExplorer</string>
+    <string name="first">First</string>
+    <string name="fade">Fade</string>
+    <string name="explode">Explode</string>
+    <string name="slide">Slide</string>
 </resources>
