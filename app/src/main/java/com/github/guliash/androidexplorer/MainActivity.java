@@ -15,10 +15,11 @@ public class MainActivity extends BaseActivity {
         asyncTask2.execute(new Void[]{null});
     }
 
-    AsyncTask<Void, Void, Void> asyncTask2 = new AsyncTask<Void, Void, Void>() {
+    AsyncTask<Void, Void, Void> asyncTask = new AsyncTask<Void, Void, Void>() {
         @Override
         protected Void doInBackground(Void...params) {
             try {
+                Log.e(TAG, "BACKGROUND 1");
                 Thread.sleep(10_000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
@@ -32,10 +33,11 @@ public class MainActivity extends BaseActivity {
         }
     };
 
-    AsyncTask<Void, Void, Void> asyncTask = new AsyncTask<Void, Void, Void>() {
+    AsyncTask<Void, Void, Void> asyncTask2 = new AsyncTask<Void, Void, Void>() {
         @Override
         protected Void doInBackground(Void...params) {
             try {
+                Log.e(TAG, "BACKGROUND 2");
                 Thread.sleep(1_000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
