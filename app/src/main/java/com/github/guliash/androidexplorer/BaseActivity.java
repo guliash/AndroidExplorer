@@ -1,7 +1,6 @@
 package com.github.guliash.androidexplorer;
 
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
@@ -10,9 +9,9 @@ public class BaseActivity extends AppCompatActivity {
     protected static String TAG = "explorer";
 
     @Override
-    public void onCreate(Bundle savedInstanceState, PersistableBundle persistentState) {
+    protected void onCreate(Bundle savedInstanceState) {
         Log.e(TAG, "ON CREATE " + this);
-        super.onCreate(savedInstanceState, persistentState);
+        super.onCreate(savedInstanceState);
     }
 
     @Override
