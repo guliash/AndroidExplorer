@@ -2,7 +2,6 @@ package com.github.guliash.androidexplorer;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.util.Log;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -18,13 +17,11 @@ public class SecondActivity extends BaseActivity implements TestAsyncTask.Callba
 
     @OnClick(R.id.btn)
     public void onClick() {
-        Log.e(null, "CLICK");
         new TestAsyncTask(this).execute();
     }
 
     @Override
     public void onResult(String result) {
-        Log.e(TAG, "RESULT " + this);
         finish();
     }
 }

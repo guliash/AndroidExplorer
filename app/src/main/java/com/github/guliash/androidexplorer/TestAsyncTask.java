@@ -1,7 +1,6 @@
 package com.github.guliash.androidexplorer;
 
 import android.os.AsyncTask;
-import android.util.Log;
 
 import java.lang.ref.WeakReference;
 
@@ -30,7 +29,6 @@ public class TestAsyncTask extends AsyncTask<Void, Void, String> {
     @Override
     protected void onPostExecute(String result) {
         Callbacks callbacks = mCallbacks.get();
-        Log.e("TAG", "CALLBACKS " + callbacks);
         if(callbacks != null) {
             callbacks.onResult(result);
         }
