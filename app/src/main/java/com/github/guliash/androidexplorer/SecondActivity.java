@@ -30,11 +30,11 @@ public class SecondActivity extends BaseActivity implements TestAsyncTask.Callba
     @Override
     public void onResult(String result) {
         Log.e(TAG, "RESULT " + result);
+        Log.e(TAG, "RESULT " + this);
         DialogFragment dialog = (DialogFragment)getSupportFragmentManager().findFragmentByTag(DIALOG_TAG);
         if(dialog != null) {
             dialog.dismiss();
         }
-        setResult(RESULT_OK);
         finish();
     }
 }
