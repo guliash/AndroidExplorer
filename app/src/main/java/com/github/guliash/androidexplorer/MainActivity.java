@@ -1,6 +1,5 @@
 package com.github.guliash.androidexplorer;
 
-import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -29,8 +28,6 @@ public class MainActivity extends BaseActivity {
         @Override
         public void onReceive(Context context, Intent intent) {
             Log.e(TAG, "ON RECEIVE");
-
-            mResult.setText(R.string.done);
         }
     };
 
@@ -60,13 +57,14 @@ public class MainActivity extends BaseActivity {
         Log.e(TAG, "ON ACTIVITY RESULT");
     }
 
+    private int mCounter = 0;
+
     @OnClick(R.id.start)
     void onStartClick() {
         Log.e(TAG, "START CLICK");
         mResult.setText("");
         Intent intent = new Intent(this, MyService.class);
-        PendingIntent pi = createPendingResult(1, new Intent(), PendingIntent.FLAG_UPDATE_CURRENT);
-        intent.putExtra("pi", pi);
+        intent.putExtra("counter", mCounter++);
         startService(intent);
     }
 
