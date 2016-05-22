@@ -43,8 +43,10 @@ public class MainActivity extends BaseActivity {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(this, imageView, "logo");
             startActivity(intent, options.toBundle());
+            finish();
         } else {
             startActivity(intent);
+            finish();
         }
         mShouldFinish = true;
     }
