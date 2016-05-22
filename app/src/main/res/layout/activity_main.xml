@@ -11,7 +11,7 @@
     <ImageView
         android:layout_width="200dp"
         android:layout_height="200dp"
-        android:src="@drawable/ic_biohazard_black_48dp"
+        android:src="@drawable/ic_android_black_48dp"
         android:layout_gravity="center"
         android:transitionName="logo"
         android:id="@+id/logo"

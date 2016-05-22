@@ -5,7 +5,7 @@
     <ImageView
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:src="@drawable/ic_biohazard_black_48dp"
+        android:src="@drawable/ic_android_black_48dp"
         android:transitionName="logo"
         android:layout_gravity="center_horizontal"/>
 </LinearLayout>
