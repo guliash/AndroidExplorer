@@ -21,11 +21,10 @@
         android:layout_height="wrap_content"
         android:id="@+id/start"
         android:text="@string/start"/>
-
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/stop"
-        android:text="@string/stop"/>
+        android:id="@+id/binder"
+        android:text="binder"/>
 
 </LinearLayout>

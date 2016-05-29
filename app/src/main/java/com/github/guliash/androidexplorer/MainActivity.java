@@ -1,11 +1,11 @@
 package com.github.guliash.androidexplorer;
 
-import android.content.BroadcastReceiver;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
+import android.content.ServiceConnection;
 import android.os.Bundle;
-import android.support.v4.content.LocalBroadcastManager;
+import android.os.IBinder;
 import android.util.Log;
 import android.widget.TextView;
 
@@ -15,21 +15,14 @@ import butterknife.OnClick;
 
 public class MainActivity extends BaseActivity {
 
+    private MyService mService;
+    private int mCounter = 0;
+
     @BindView(R.id.result)
     TextView mResult;
 
     @BindView(R.id.start)
     TextView mStart;
-
-    @BindView(R.id.stop)
-    TextView mStop;
-
-    private BroadcastReceiver mBroadcastReceiver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            Log.e(TAG, "ON RECEIVE");
-        }
-    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,36 +34,39 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        LocalBroadcastManager.getInstance(this).registerReceiver(mBroadcastReceiver,
-                new IntentFilter(Constants.RETURN_ACTION));
+        bindService(new Intent(this, MyService.class), mConnection, Context.BIND_AUTO_CREATE);
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        LocalBroadcastManager.getInstance(this).unregisterReceiver(mBroadcastReceiver);
+        unbindService(mConnection);
     }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        Log.e(TAG, "ON ACTIVITY RESULT");
-    }
-
-    private int mCounter = 0;
 
     @OnClick(R.id.start)
     void onStartClick() {
         Log.e(TAG, "START CLICK");
-        mResult.setText("");
         Intent intent = new Intent(this, MyService.class);
         intent.putExtra("counter", mCounter++);
         startService(intent);
     }
 
-    @OnClick(R.id.stop)
-    void onStopClick() {
-        stopService(new Intent(this, MyService.class));
+    @OnClick(R.id.binder)
+    void onBinderClick() {
+        mService.start(mCounter++);
     }
+
+    private ServiceConnection mConnection = new ServiceConnection() {
+        @Override
+        public void onServiceConnected(ComponentName name, IBinder service) {
+            MyService.LocalBinder binder = (MyService.LocalBinder)service;
+            mService = binder.getService();
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName name) {
+
+        }
+    };
 
 }
