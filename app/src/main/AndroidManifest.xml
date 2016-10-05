@@ -16,12 +16,14 @@
             </intent-filter>
         </activity>
 
-        <receiver android:name=".Receiver1">
+        <receiver android:name=".Receiver1"
+            android:exported="false">
             <intent-filter android:priority="2">
                 <action android:name="BABAH"/>
             </intent-filter>
         </receiver>
-        <receiver android:name=".Receiver2">
+        <receiver android:name=".Receiver2"
+            android:exported="false">
             <intent-filter android:priority="1">
                 <action android:name="BABAH"/>
             </intent-filter>

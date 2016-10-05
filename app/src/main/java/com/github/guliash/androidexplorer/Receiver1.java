@@ -9,6 +9,5 @@ public class Receiver1 extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         Log.e("TAG", "ON RECEIVE 1");
-        abortBroadcast();
     }
 }
