@@ -5,10 +5,10 @@ This project contains some simple examples of using Android features
 
 There are four cases:
 
-1. No observeOn and subscribeOn calls.
+1. No observeOn and no subscribeOn calls.
 2. Only observeOn calls.
 3. Only subscribeOn calls.
-4. Greater than or equal to 1 subscribeOn calls and greater than or equal to 1 observeOn calls.
+4. There are both observeOn and subscribeOn calls.
 
 Let's look at each of those.
 
