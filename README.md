@@ -10,7 +10,7 @@ There are four cases:
 3. Only subscribeOn calls.
 4. There are both observeOn and subscribeOn calls.
 
-Let's look at each of those. Also you should see [tests](app/src/test/java/com/github/guliash/androidexplorer/RxOrderTest.java)
+Let's look at each of those. Also you should see [TESTS](app/src/test/java/com/github/guliash/androidexplorer/RxOrderTest.java)
 
 1. If there are no observeOn or subscribeOn then all methods will be executed on the current thread (proof test17).
 2. If there are only observeOn calls then:
