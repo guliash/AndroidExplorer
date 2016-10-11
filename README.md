@@ -12,22 +12,23 @@ There are four cases:
 
 Let's look at each of those. Also you should see [TESTS](app/src/test/java/com/github/guliash/androidexplorer/RxOrderTest.java)
 
-1. If there are no observeOn or subscribeOn then all methods will be executed on the current thread (proof test17).
+1. If there are no observeOn or subscribeOn then all methods will be executed on the current thread. Proof test 'noSubscribeAndObserve'.
+
 2. If there are only observeOn calls then:
   * All methods before the first (from the top) observeOn will be executed on the **current thread**.
   * All methods between the first and the second observeOn will be executed on the first scheduler.
   * All methods between the second and the third observeOn will be executed on the second scheduler.
   * and so on...
   
-  Proof test18.
+  Proof test 'onlyObserves'.
 3. If there are only subscribeOn calls then:
   * All methods will be executed on the first from the top scheduler.
   
-  Proof test19.
+  Proof test 'onlySubscribes'.
 4. If there are both subscribeOn and observeOn calls then:
   * All methods before the first (from the top) observeOn will be executed on the first (from the top) subscribeOn's scheduler.
   * **All** methods between the first and the second observeOn will be executed on the first(from the top) observeOn's scheduler.
   * **All** methods between the second and the third observeOn will be executed on the second(from the top) observeOn's scheduler.
   * and so on...
   
-  Proof test20 and many others.
+  Proof test 'bothSubscribesAndObserves'.
