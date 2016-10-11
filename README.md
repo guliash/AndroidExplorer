@@ -4,6 +4,7 @@ This project contains some simple examples of using Android features
 ## Order of observeOn and subscribeOn
 
 There are four cases:
+
 1. No observeOn and subscribeOn calls.
 2. Only observeOn calls.
 3. Only subscribeOn calls.
