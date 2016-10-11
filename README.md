@@ -12,7 +12,7 @@ There are four cases:
 
 Let's look at each of those.
 
-1. If there are no observeOn or subscribeOn than all methods will be executed on the current thread (proof test17).
+1. If there are no observeOn or subscribeOn then all methods will be executed on the current thread (proof test17).
 2. If there are only observeOn calls then:
   * All methods before the first (from the top) observeOn will be executed on the **current thread**.
   * All methods between the first and the second observeOn will be executed on the first scheduler.
