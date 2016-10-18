@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import butterknife.BindView;
@@ -14,7 +15,7 @@ import butterknife.ButterKnife;
 public class MyFragment extends BaseFragment {
 
     @BindView(R.id.text)
-    TextView textView;
+    EditText editText;
 
     @Nullable
     @Override
@@ -28,8 +29,9 @@ public class MyFragment extends BaseFragment {
         super.onViewCreated(view, savedInstanceState);
         ButterKnife.bind(this, view);
         if(savedInstanceState == null) {
-            textView.setText("YEBA");
+            editText.setText("YEBA");
         } else {
+            editText.setText("HERASE");
         }
     }
 }
