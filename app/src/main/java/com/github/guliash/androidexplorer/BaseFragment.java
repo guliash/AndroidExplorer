@@ -33,6 +33,12 @@ public class BaseFragment extends Fragment {
     }
 
     @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        Log.e(TAG, "ON VIEW CREATED " + this);
+        super.onViewCreated(view, savedInstanceState);
+    }
+
+    @Override
     public void onDestroyView() {
         Log.e(TAG, "ON DESTROY VIEW " + this);
         super.onDestroyView();
@@ -66,6 +72,12 @@ public class BaseFragment extends Fragment {
     public void onSaveInstanceState(Bundle outState) {
         Log.e(TAG, "ON SAVE INSTANCE STATE " + this);
         super.onSaveInstanceState(outState);
+    }
+
+    @Override
+    public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
+        Log.e(TAG, "ON VIEW STATE RESTORED " + this);
+        super.onViewStateRestored(savedInstanceState);
     }
 
     @Override
