@@ -1,0 +1,1 @@
+Dialog height is restricted. So need to use ScrollView or something.
