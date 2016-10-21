@@ -6,6 +6,9 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.TextView;
 
 public class AlertDialogFragment extends BaseDialogFragment {
 
@@ -18,9 +21,12 @@ public class AlertDialogFragment extends BaseDialogFragment {
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         super.onCreateDialog(savedInstanceState);
-
+        LayoutInflater inflater = LayoutInflater.from(getContext());
+        View view = inflater.inflate(R.layout.test_layout, null, false);
+        ((TextView)view.findViewById(R.id.text)).setText(R.string.longtext);
         return new AlertDialog.Builder(getActivity())
                 .setCancelable(true)
+                .setView(view)
                 .setTitle(R.string.fragment_alert)
                 .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
                     @Override
@@ -47,7 +53,8 @@ public class AlertDialogFragment extends BaseDialogFragment {
                     public void onCancel(DialogInterface dialog) {
                         Log.e(TAG, "FRAGMENT CANCEL DIALOG");
                     }
-                }).create();
+                })
+                .create();
     }
 
     @Override
