@@ -13,7 +13,7 @@ Suppose we have next drawable set to a Button background:
     <item android:drawable="@android:color/black" android:state_pressed="true"/>
     <item android:drawable="@android:color/holo_red_dark"/>
 </selector>
-```xml
+```
 If button is pressed then black color will be chosen. If not then red.
 
 If button has next drawable set to background:
@@ -23,5 +23,5 @@ If button has next drawable set to background:
     <item android:drawable="@android:color/holo_red_dark"/>
     <item android:drawable="@android:color/black" android:state_pressed="true"/>
 </selector>
-```xml
+```
 Then does not matter whether button is enabled or disabled red color will be chosen (because it is first satisfied).
