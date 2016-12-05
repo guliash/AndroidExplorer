@@ -10,5 +10,19 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.github.guliash.androidexplorer.MainActivity">
+    <android.support.v4.view.ViewPager
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:id="@+id/pager"></android.support.v4.view.ViewPager>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/button"
+        android:text="change dataset"/>
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/clear"
+        android:text="clear dataset"/>
 </LinearLayout>
