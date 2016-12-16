@@ -67,6 +67,7 @@ public class RepeatWhenTest {
 
     @Test
     public void ok_repeatsOneTime() {
+        //todo why prints 1 time?
         Observable.just(1, 2)
                 .repeatWhen(notifications -> notifications.take(1))
                 .subscribe(subscriber);
