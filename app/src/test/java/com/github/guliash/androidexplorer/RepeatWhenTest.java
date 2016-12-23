@@ -6,6 +6,7 @@ import java.util.concurrent.TimeUnit;
 
 import rx.Observable;
 import rx.exceptions.OnErrorNotImplementedException;
+import rx.observers.TestSubscriber;
 
 public class RepeatWhenTest {
 
@@ -31,6 +32,17 @@ public class RepeatWhenTest {
         subscriber.awaitTerminalEvent();
     }
 
+    @Test
+    public void complete_notificationsOnCompletedNotCalled() {
+        Observable
+                .empty()
+                .repeatWhen(notifications -> notifications.doOnCompleted(Actions.ON_COMPLETED_ACTION).take(2).
+                            doOnNext(System.out::println))
+                .subscribe(subscriber);
+
+        subscriber.awaitTerminalEvent();
+    }
+
     @Test(expected = OnErrorNotImplementedException.class)
     public void error_subscribeToNotificationsWithoutError_throwsException() {
         Observable
@@ -44,12 +56,20 @@ public class RepeatWhenTest {
         subscriber.awaitTerminalEvent();
     }
 
+    @Test(expected = OnErrorNotImplementedException.class)
+    public void error_subscriberWithoutErrorImpl() {
+        Observable
+                .error(new Throwable())
+                .repeatWhen(notifications -> notifications.take(2))
+                .subscribe(v -> {});
+    }
+
     @Test
     public void ok_repeatsWithTimerTwoTimes() {
         Observable
                 .just(1, 2)
                 .repeatWhen(notifications -> notifications.flatMap(el -> Observable.timer(2, TimeUnit.SECONDS))
-                        .take(2))
+                        .take(2).doOnCompleted(Actions.ON_COMPLETED_ACTION))
                 .subscribe(subscriber);
 
         subscriber.awaitTerminalEvent();
@@ -75,5 +95,15 @@ public class RepeatWhenTest {
         subscriber.awaitTerminalEvent();
     }
 
+    @Test
+    public void ok_repeat_unsubscribe() {
+        PrintSubscriber printSubscriber = new PrintSubscriber();
+        Observable.just(1, 2)
+                .doOnUnsubscribe(() -> System.out.println("Unsubscribe"))
+                .repeatWhen(notifications -> notifications.flatMap(ø -> Observable.timer(1, TimeUnit.SECONDS)))
+                .subscribe(printSubscriber);
+
+        printSubscriber.awaitTerminalEvent();
+    }
 
 }
