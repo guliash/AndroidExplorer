@@ -13,7 +13,7 @@ public class PrintSubscriber<T> extends TestSubscriber<T> {
     @Override
     public void onError(Throwable e) {
         super.onError(e);
-        System.out.println("on error");
+        System.out.println("on error " + e);
     }
 
     @Override
