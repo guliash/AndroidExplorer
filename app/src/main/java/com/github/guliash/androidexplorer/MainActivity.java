@@ -2,6 +2,8 @@ package com.github.guliash.androidexplorer;
 
 import android.os.Bundle;
 
+import rx.schedulers.Schedulers;
+
 public class MainActivity extends BaseActivity {
 
     @Override

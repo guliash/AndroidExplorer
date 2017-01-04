@@ -7,6 +7,9 @@ import java.util.concurrent.TimeUnit;
 
 import rx.Observable;
 import rx.Single;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
+import rx.subscriptions.Subscriptions;
 
 public class RetryWhenTest {
 
@@ -51,6 +54,26 @@ public class RetryWhenTest {
                 .retryWhen(errors -> Observable.error(new Throwable()))
                 .subscribe(printSubscriber);
 
+        printSubscriber.awaitTerminalEvent();
+    }
+
+    @Test
+    public void retryWhen_checkObserveOn() {
+        PrintSubscriber printSubscriber = new PrintSubscriber();
+
+        Observable.error(new Throwable())
+                .observeOn(Schedulers.io())
+                .retryWhen(errors -> {
+                    System.out.println(Thread.currentThread().getName());
+                    return Observable.empty();
+                })
+                .subscribeOn(Schedulers.computation())
+                .unsubscribeOn(Schedulers.io())
+                .subscribe(printSubscriber);
+        printSubscriber.add(Subscriptions.create(() -> {
+            System.out.println("unsbuscribe");
+            System.out.println(Thread.currentThread().getName());
+        }));
         printSubscriber.awaitTerminalEvent();
     }
 }
