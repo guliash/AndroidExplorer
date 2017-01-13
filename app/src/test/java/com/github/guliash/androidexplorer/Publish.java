@@ -64,7 +64,6 @@ public class Publish {
         Thread.sleep(1000);
 
         System.out.println(subscriber.isUnsubscribed());
-        Observable.combineLatest()
 
         Thread.sleep(5000);
         subscriber.awaitTerminalEvent();
