@@ -3,10 +3,11 @@ package com.github.guliash.androidexplorer;
 import org.junit.Test;
 
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import rx.Observable;
 import rx.exceptions.OnErrorNotImplementedException;
-import rx.observers.TestSubscriber;
+import rx.schedulers.Schedulers;
 
 public class RepeatWhenTest {
 
@@ -37,7 +38,7 @@ public class RepeatWhenTest {
         Observable
                 .empty()
                 .repeatWhen(notifications -> notifications.doOnCompleted(Actions.ON_COMPLETED_ACTION).take(2).
-                            doOnNext(System.out::println))
+                        doOnNext(System.out::println))
                 .subscribe(subscriber);
 
         subscriber.awaitTerminalEvent();
@@ -61,7 +62,8 @@ public class RepeatWhenTest {
         Observable
                 .error(new Throwable())
                 .repeatWhen(notifications -> notifications.take(2))
-                .subscribe(v -> {});
+                .subscribe(v -> {
+                });
     }
 
     @Test
@@ -104,6 +106,36 @@ public class RepeatWhenTest {
                 .subscribe(printSubscriber);
 
         printSubscriber.awaitTerminalEvent();
+    }
+
+    @Test
+    public void repeatWhen_thread() {
+        PrintSubscriber subscriber = new PrintSubscriber();
+        AtomicInteger counter = new AtomicInteger(0);
+        Observable.interval(1, TimeUnit.SECONDS)
+                .take(2)
+                .observeOn(Schedulers.io())
+                .repeatWhen(completes -> completes.takeWhile(ø -> {
+                    System.out.println(Thread.currentThread().getName());
+                    return counter.getAndIncrement() < 2;
+                }))
+                .doOnNext(v -> {
+                    System.out.println("Result " + Thread.currentThread().getName());
+                })
+                .subscribe(subscriber);
+        subscriber.awaitTerminalEvent();
+    }
+
+    @Test
+    public void repeatWhen_thread2() {
+        PrintSubscriber subscriber = new PrintSubscriber();
+        Observable.range(0, 5)
+                .delay(100, TimeUnit.MILLISECONDS)
+                .doOnNext(v -> {
+                    System.out.println("Result " + Thread.currentThread().getName());
+                })
+                .subscribe(subscriber);
+        subscriber.awaitTerminalEvent();
     }
 
 }

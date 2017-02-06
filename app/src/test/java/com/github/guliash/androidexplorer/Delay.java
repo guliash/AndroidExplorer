@@ -6,6 +6,7 @@ import java.util.concurrent.TimeUnit;
 
 import rx.Observable;
 import rx.observers.TestSubscriber;
+import rx.subjects.PublishSubject;
 
 public class Delay {
 
@@ -32,7 +33,6 @@ public class Delay {
             inSubscriber.onCompleted();
         })).delay(() -> Observable.timer(5, TimeUnit.SECONDS), Observable::just)
                 .subscribe(subscriber);
-
         subscriber.awaitTerminalEvent();
     }
 
