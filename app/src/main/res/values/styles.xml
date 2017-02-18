@@ -5,13 +5,14 @@
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:textColor">@android:color/holo_red_dark</item>
+        <item name="colorAccent">@android:color/holo_purple</item>
+        <!--<item name="android:textColor">?android:attr/colorAccent</item>-->
         <item name="android:background">@android:color/holo_green_light</item>
     </style>
 
-    <style name="Test">
-        <item name="android:textColor">@android:color/holo_blue_dark</item>
+    <style name="Test" parent="Base.Theme.AppCompat.Dialog">
+        <item name="android:textColor">?android:attr/colorAccent</item>
+        <item name="android:background">@android:color/holo_blue_bright</item>
     </style>
 
 </resources>
