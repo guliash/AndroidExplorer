@@ -9,13 +9,13 @@
         <!--<item name="android:textColor">?android:attr/colorAccent</item>-->
         <item name="android:background">@android:color/holo_green_light</item>
         <item name="babababh">@android:color/holo_orange_dark</item>
-        <item name="android:textColor">?attr/babababh</item>
+        <item name="android:textColorPrimary">?attr/babababh</item>
     </style>
 
-    <!--<style name="Test" parent="Base.Theme.AppCompat.Dialog">-->
+    <style name="Test" parent="Base.Theme.AppCompat.Dialog">
         <!--<item name="android:textColorPrimary">@android:color/holo_orange_dark</item>-->
         <!--<item name="android:background">@android:color/holo_blue_bright</item>-->
-    <!--</style>-->
+    </style>
 
 
 </resources>
