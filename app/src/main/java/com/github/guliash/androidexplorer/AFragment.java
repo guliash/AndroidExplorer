@@ -1,5 +1,6 @@
 package com.github.guliash.androidexplorer;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -25,10 +26,6 @@ public class AFragment extends BaseFragment {
 
     @OnClick(R.id.button)
     void onClick() {
-        getActivity().getSupportFragmentManager()
-                .beginTransaction()
-                .replace(R.id.container, new BFragment())
-                .addToBackStack(null)
-                .commit();
+        startActivity(new Intent(getContext(), TestActivity.class));
     }
 }
