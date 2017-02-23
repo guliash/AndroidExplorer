@@ -6,5 +6,5 @@ import dagger.Subcomponent;
 @Subcomponent
 @SubScope
 public interface SubComponent {
-    SubSubComponent plus();
+    SubSubComponent.Builder builder();
 }
