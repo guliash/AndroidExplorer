@@ -6,12 +6,7 @@ import dagger.Component;
 import dagger.Subcomponent;
 
 @SubSubScope
-@Subcomponent
+@Subcomponent(modules = MyModule.class)
 public interface SubSubComponent {
     void inject(MainActivity activity);
-
-    @Subcomponent.Builder
-    interface Builder {
-        SubSubComponent build();
-    }
 }

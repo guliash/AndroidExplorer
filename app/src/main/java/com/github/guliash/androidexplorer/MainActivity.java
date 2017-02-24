@@ -3,6 +3,7 @@ package com.github.guliash.androidexplorer;
 import android.os.Bundle;
 
 import javax.inject.Inject;
+import javax.inject.Provider;
 
 public class MainActivity extends BaseActivity {
 
@@ -13,7 +14,9 @@ public class MainActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        DaggerMyComponent.create().plus().builder().build().inject(this);
+        DaggerSubComponent.builder().myComponent(DaggerMyComponent.create()).build().inject(this);
+
+//        DaggerMyComponent.create().plus().builder().build().inject(this);
 
 //        DaggerMyComponent.create().plus().plus().inject(this);
     }
