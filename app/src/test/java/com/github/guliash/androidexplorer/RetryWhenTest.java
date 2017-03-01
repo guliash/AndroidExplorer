@@ -76,4 +76,36 @@ public class RetryWhenTest {
         }));
         printSubscriber.awaitTerminalEvent();
     }
+
+    @Test
+    public void retryWhen_unsubscribeTest() {
+        PrintSubscriber printSubscriber = new PrintSubscriber();
+        Observable.just(1)
+                .doOnUnsubscribe(() -> System.out.println("Unsubscribed 1"))
+                .doOnSubscribe(() -> System.out.println("Subscribed 1"))
+                .flatMap(i -> Observable.error(new Throwable()))
+                .doOnUnsubscribe(() -> System.out.println("Unsubscribe 2"))
+                .doOnSubscribe(() -> System.out.println("Subscribed 2"))
+                .retryWhen(errors -> errors.take(3).doOnNext(th -> System.out.println(th)))
+                .subscribe(printSubscriber);
+
+        printSubscriber.awaitTerminalEvent();
+    }
+
+    @Test
+    public void retryWhenUpStreamNoError() {
+        PrintSubscriber subscriber = new PrintSubscriber();
+        Observable.just(1, 2, 3, 4)
+                .doOnNext(i -> System.out.println("Next " + i))
+                .doOnUnsubscribe(() -> System.out.println("Unsubscribe"))
+                .flatMap(i -> {
+                    return Observable.error(new Throwable());
+                })
+                .onErrorResumeNext(error -> {
+                    return Observable.just(1);
+                })
+                .subscribe(subscriber);
+
+        subscriber.awaitTerminalEvent();
+    }
 }
