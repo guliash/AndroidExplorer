@@ -63,12 +63,26 @@ public class FlatMap {
 
     @Test
     public void test1() {
+
         PrintSubscriber printSubscriber = new PrintSubscriber();
         Observable.just(1, 2)
                 .observeOn(Schedulers.io())
                 .flatMap(i -> Observable.just(1, 2).observeOn(Schedulers.computation()))
                 .doOnNext(ø -> System.out.println("current thread " + Thread.currentThread().getName()))
                 .subscribe(printSubscriber);
+    }
+
+    @Test
+    public void test3() {
+        PrintSubscriber subscriber = new PrintSubscriber();
+        Observable.just(1, 2)
+                .doOnUnsubscribe(() -> System.out.println("unsubscribe1"))
+                .concatMap(i -> Observable.just(i * 4))
+                .doOnUnsubscribe(() -> System.out.println("unsubscribe2"))
+                .subscribe(subscriber);
+
+        subscriber.awaitTerminalEvent();
+
     }
 
 }
