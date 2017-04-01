@@ -6,12 +6,25 @@ import java.util.concurrent.TimeUnit;
 
 import rx.Notification;
 import rx.Observable;
+import rx.Observer;
+import rx.observables.AsyncOnSubscribe;
 import rx.schedulers.Schedulers;
 
 public class FlatMap {
 
     @org.junit.Test
     public void testScheduler() {
+        Observable.create(new AsyncOnSubscribe<Object, Object>() {
+            @Override
+            protected Object generateState() {
+                return null;
+            }
+
+            @Override
+            protected Object next(Object state, long requested, Observer<Observable<?>> observer) {
+                return null;
+            }
+        });
         PrintSubscriber<Long> subscriber = new PrintSubscriber<>();
         Observable.interval(1, TimeUnit.SECONDS)
                 .observeOn(Schedulers.io())

@@ -2,8 +2,6 @@ package com.github.guliash.androidexplorer;
 
 import org.junit.Test;
 
-import java.util.concurrent.TimeUnit;
-
 import rx.Observable;
 import rx.exceptions.OnErrorNotImplementedException;
 import rx.schedulers.Schedulers;
@@ -17,6 +15,16 @@ public class BaseObservableTests {
                 .subscribe(v -> {
                     throw new RuntimeException();
                 }, System.out::println);
+    }
+
+    @Test
+    public void error_inOnError() {
+        Observable.error(new Throwable())
+                .subscribe(v -> {
+                }, error -> {
+                    int x = 1 / 0;
+                });
+
     }
 
     @Test(expected = OnErrorNotImplementedException.class)
