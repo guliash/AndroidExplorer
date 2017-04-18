@@ -20,6 +20,12 @@ public class BaseFragment extends Fragment {
     }
 
     @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        Log.e(TAG, "ON ACTIVITY CREATED " + this);
+        super.onActivityCreated(savedInstanceState);
+    }
+
+    @Override
     public void onDestroy() {
         Log.e(TAG, "ON DESTROY " + this);
         super.onDestroy();
