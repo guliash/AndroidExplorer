@@ -27,9 +27,6 @@ public class MyFragment extends BaseFragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         ButterKnife.bind(this, view);
-        if(savedInstanceState == null) {
-            textView.setText("YEBA");
-        } else {
-        }
+        textView.setText("BABABAHH");
     }
 }

@@ -12,4 +12,23 @@
               android:paddingTop="@dimen/activity_vertical_margin"
               tools:context="com.github.guliash.androidexplorer.MainActivity">
 
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:id="@+id/top">
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Show/hide"
+            android:id="@+id/button"/>
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:id="@+id/bottom">
+
+    </FrameLayout>
 </LinearLayout>
