@@ -2,9 +2,13 @@ package com.github.guliash.androidexplorer;
 
 import org.junit.Test;
 
+import java.util.concurrent.TimeUnit;
+
 import rx.Observable;
 import rx.exceptions.OnErrorNotImplementedException;
 import rx.schedulers.Schedulers;
+import rx.subjects.*;
+import rx.subjects.PublishSubject;
 import rx.subscriptions.Subscriptions;
 
 public class BaseObservableTests {
@@ -45,6 +49,17 @@ public class BaseObservableTests {
             System.out.println(Thread.currentThread().getName());
         }));
 
+        subscriber.awaitTerminalEvent();
+    }
+
+    @Test
+    public void zip() {
+        PrintSubscriber<String> subscriber = new PrintSubscriber<>();
+        Observable.zip(
+                Observable.interval(100, TimeUnit.MILLISECONDS),
+                Observable.interval(400, TimeUnit.MILLISECONDS),
+                (it1, it2) -> it1 + ", " + it2
+        ).subscribe(subscriber);
         subscriber.awaitTerminalEvent();
     }
 

@@ -33,7 +33,8 @@ public class Backpressure {
                         observer.onCompleted();
                     }
                     return ++counter;
-                })).subscribe(subscriber);
+                }))
+                .subscribe(subscriber);
 
         subscriber.awaitTerminalEvent();
     }
