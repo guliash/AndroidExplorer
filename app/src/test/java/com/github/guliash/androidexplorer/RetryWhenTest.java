@@ -8,6 +8,7 @@ import java.util.concurrent.TimeUnit;
 import rx.Observable;
 import rx.Single;
 import rx.android.schedulers.AndroidSchedulers;
+import rx.observers.TestSubscriber;
 import rx.schedulers.Schedulers;
 import rx.subscriptions.Subscriptions;
 
@@ -104,6 +105,33 @@ public class RetryWhenTest {
                 .onErrorResumeNext(error -> {
                     return Observable.just(1);
                 })
+                .subscribe(subscriber);
+
+        subscriber.awaitTerminalEvent();
+    }
+
+    @Test
+    public void retryWhenWithoutComposingErrors() {
+        TestSubscriber subscriber = new TestSubscriber();
+
+        Observable.just(1)
+                .retryWhen(errors -> Observable.never())
+                .subscribe(subscriber);
+
+        subscriber.assertCompleted();
+    }
+
+    @Test
+    public void retryWhenWithoutComposingErrorsSingle() {
+        PrintSubscriber subscriber = new PrintSubscriber();
+
+        Single.just(1)
+                .doOnSuccess(it -> System.out.println("success " + it))
+                .doOnSubscribe(() -> System.out.println("subscribe "))
+                .retryWhen(errors -> Observable.never())
+                .doOnSuccess(it -> System.out.println("success after " + it))
+                .doOnError(it -> System.out.println("error"))
+                .doOnSuccess(it -> System.out.println("Do on next " + it))
                 .subscribe(subscriber);
 
         subscriber.awaitTerminalEvent();
