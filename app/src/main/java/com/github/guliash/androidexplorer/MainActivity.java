@@ -23,8 +23,8 @@ public class MainActivity extends BaseActivity {
 
     }
 
-    @OnClick(R.id.show)
-    void onShowClick() {
+    @OnClick(R.id.show_new)
+    void onShowNewClick() {
         NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
         String channelId = "id";
@@ -41,5 +41,12 @@ public class MainActivity extends BaseActivity {
 
         mNotificationManager.notify(1, new NotificationCompat.Builder(this, channelId).setSmallIcon(R.drawable.test).setContentText("Wtf1").build());
         mNotificationManager.notify(2, new NotificationCompat.Builder(this, channelId).setSmallIcon(R.drawable.test).setContentText("Wtf2").build());
+    }
+
+    @OnClick(R.id.show_old)
+    void onShowOldClick() {
+        NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+
+        mNotificationManager.notify(3, new NotificationCompat.Builder(this).setSmallIcon(R.drawable.test).build());
     }
 }

@@ -14,6 +14,12 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/show"
-        android:text="show" />
+        android:id="@+id/show_new"
+        android:text="show_new" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/show_old"
+        android:text="show_old"/>
 </LinearLayout>
