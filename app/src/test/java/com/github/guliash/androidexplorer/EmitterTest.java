@@ -16,7 +16,6 @@ public class EmitterTest {
     public void emitterTest() {
 
         PrintSubscriber printSubscriber = new PrintSubscriber();
-        printSubscriber.add(Subscriptions.create(() -> System.out.println("WOW")));
         Observable observable = Observable.create(emitter -> {
 
             Observable.timer(2000, TimeUnit.MILLISECONDS)
